@@ -1,53 +1,67 @@
 # To generate Sub-topics given a main topic that the user wants to learn
 
- - Given topics: 
-[
+ - """
+    Follow my instructions precisely. Everytime you receive an input list in the format:
+    [
     "Introduction to Programming",
     "Programming languages and paradigms",
     "Setting up the development environment",
-    "Writing and running simple programs",
-    "Basic syntax and variables"
-  ]
-  
-Write 3 questions to test the understanding of a student who has learned these. Take a deep breath and solve this step-by-step. Give the answers together in a json file format {question: answer}
+    ]
+    Write 3 questions to test the understanding of a student who has learned these. Give the output in the format:
+    {"questions":
+    [
+        {"question": "What is programming?", "answer": "Programming is the process of writing instructions for a computer to execute."},
+        {"question": "What are programming languages?", "answer": "Programming languages are formal languages used to communicate instructions to a computer."},
+        {"question": "Why is setting up the development environment important?", "answer": "Setting up the development environment ensures that all necessary software and tools are installed and configured for programming."}
+    ]
+    }
+    """
+    [['Introduction to Programming', 'What is a programming language', 'Programming fundamentals', 'Variables and data types', 'Basic arithmetic operations', 'Input and output'], ['Decision making', 'Conditional statements', 'Loops', 'Iterative control structures', 'Nested loops'], ['Functions', 'Defining and calling functions', 'Function parameters and return values', 'Recursive functions', 'Scope and lifetime of variables'], ['Arrays', 'Array manipulation', 'Multi-dimensional arrays', 'String manipulation', 'Working with characters'], ['File operations', 'Reading and writing files', 'Error handling', 'Exception handling', 'Debugging techniques'], ['Object-oriented programming', 'Classes and objects', 'Inheritance', 'Polymorphism', 'Encapsulation'], ['Introduction to algorithms', 'Sorting algorithms', 'Searching algorithms', 'Complexity analysis', 'Algorithm optimization'], ['Introduction to data structures', 'Arrays and linked lists', 'Stacks and queues', 'Trees and graphs', 'Hashing and hash tables']]
+```
+['Introduction to Programming', 'What is a programming language', 'Programming fundamentals', 'Variables and data types', 'Basic arithmetic operations', 'Input and output']
+[{'question': 'What is programming?', 'answer': 'Programming is the process of writing instructions for a computer to execute.'}, {'question': 'What is a programming language?', 'answer': 'A programming language is a formal language used to communicate instructions to a computer.'}, {'question': 'What are programming fundamentals?', 'answer': 'Programming fundamentals include the basic concepts and principles used in programming.'}, {'question': 'What are variables and data types?', 'answer': 'Variables are containers used to store data, and data types define the kind of data that can be stored.'}, {'question': 'What are basic arithmetic operations in programming?', 'answer': 'Basic arithmetic operations in programming include addition, subtraction, multiplication, and division.'}, {'question': 'What is input and output in programming?', 'answer': 'Input is the data provided to a program, and output is the result produced by the program.'}]
+['Decision making', 'Conditional statements', 'Loops', 'Iterative control structures', 'Nested loops']
+[{'question': 'What is decision making in programming?', 'answer': 'Decision making is a process in programming where certain conditions are evaluated and specific actions are taken based on the result.'}, {'question': 'What are conditional statements in programming?', 'answer': 'Conditional statements are used to make decisions in programming by evaluating conditions and executing specific code blocks based on the result.'}, {'question': 'Why are loops important in programming?', 'answer': 'Loops allow us to repeatedly execute a block of code, enabling us to automate repetitive tasks and process large amounts of data efficiently.'}, {'question': 'What are iterative control structures in programming?', 'answer': 'Iterative control structures are programming constructs such as loops that allow us to repeat a block of code multiple times until a certain condition is met.'}, {'question': 'What are nested loops?', 'answer': 'Nested loops are loops within loops, where the inner loop executes its iterations multiple times for each iteration of the outer loop.'}]
+['Functions', 'Defining and calling functions', 'Function parameters and return values', 'Recursive functions', 'Scope and lifetime of variables']
+[{'question': 'What is a function?', 'answer': 'A function is a reusable block of code that performs a specific task.'}, {'question': 'How do you define and call a function?', 'answer': "To define a function, you use the 'def' keyword, followed by the function name and a pair of parentheses. To call a function, you simply use the function name followed by a pair of parentheses."}, {'question': 'What are function parameters and return values?', 'answer': 'Function parameters are values that are passed into a function when it is called, and they can be used within the function. Return values are the values that a function sends back to the caller.'}, {'question': 'What are recursive functions?', 'answer': 'Recursive functions are functions that call themselves. They are useful for solving problems that can be divided into smaller subproblems.'}, {'question': 'What is the scope and lifetime of variables?', 'answer': 'The scope of a variable refers to where it can be accessed within a program. The lifetime of a variable refers to how long it exists in memory during program execution.'}]
+['Arrays', 'Array manipulation', 'Multi-dimensional arrays', 'String manipulation', 'Working with characters']
+[{'question': 'What is an array?', 'answer': 'An array is a data structure that stores a fixed-size sequence of elements of the same type.'}, {'question': 'How do you manipulate an array?', 'answer': 'Array manipulation involves operations like adding elements, removing elements, and modifying existing elements.'}, {'question': 'What are multi-dimensional arrays?', 'answer': 'Multi-dimensional arrays are arrays with more than one dimension, allowing the storage and retrieval of data in multiple dimensions or subscripts.'}]
+['File operations', 'Reading and writing files', 'Error handling', 'Exception handling', 'Debugging techniques']
+[{'question': 'What are file operations in programming?', 'answer': 'File operations refer to actions performed on files, such as reading from or writing to a file.'}, {'question': 'How does reading and writing files work in programming?', 'answer': 'Reading and writing files involve opening a file, performing the desired operation (e.g., reading or writing data), and then closing the file.'}, {'question': 'Why is error handling important in programming?', 'answer': 'Error handling helps manage unexpected situations or errors that may occur during program execution, allowing for proper handling and recovery.'}, {'question': 'What is exception handling in programming?', 'answer': 'Exception handling is a mechanism to handle and recover from errors or exceptional situations that may occur during program execution.'}, {'question': 'What are debugging techniques?', 'answer': 'Debugging techniques are methods used to identify and fix errors or bugs in a program, ensuring its proper functionality.'}]
+['Object-oriented programming', 'Classes and objects', 'Inheritance', 'Polymorphism', 'Encapsulation']
+[{'question': 'What is object-oriented programming?', 'answer': 'Object-oriented programming is a programming paradigm that organizes data and behavior into reusable structures called objects.'}, {'question': 'What are classes and objects?', 'answer': 'Classes are blueprints for creating objects, while objects are instances of a class that contains its own unique data and behavior.'}, {'question': 'What is inheritance in programming?', 'answer': 'Inheritance is a mechanism in which a class inherits characteristics (properties and methods) from another class, allowing for code reuse and creating relationships between classes.'}, {'question': 'What is polymorphism?', 'answer': 'Polymorphism is the ability of an object to take on many forms, allowing objects of different classes to be treated as objects of the same parent class.'}, {'question': 'What is encapsulation?', 'answer': 'Encapsulation is the practice of hiding internal details and providing access to only what is necessary, promoting code organization and preventing unwanted modifications.'}]
+['Introduction to algorithms', 'Sorting algorithms', 'Searching algorithms', 'Complexity analysis', 'Algorithm optimization']
+[{'question': 'What is an algorithm?', 'answer': 'An algorithm is a step-by-step procedure or a set of rules for solving a specific problem.'}, {'question': 'What are sorting algorithms?', 'answer': 'Sorting algorithms are techniques to arrange elements in a specific order, such as increasing or decreasing order.'}, {'question': 'Why is complexity analysis important for algorithms?', 'answer': 'Complexity analysis helps in understanding the efficiency and performance of different algorithms.'}]
+['Introduction to data structures', 'Arrays and linked lists', 'Stacks and queues', 'Trees and graphs', 'Hashing and hash tables']
+[{'question': 'What are data structures?', 'answer': 'Data structures are ways to organize and store data in a computer memory.'}, {'question': 'What are arrays and linked lists?', 'answer': 'Arrays and linked lists are linear data structures used to store and access elements.'}, {'question': 'What are stacks and queues?', 'answer': 'Stacks and queues are abstract data types used to store and retrieve elements in a specific order.'}, {'question': 'What are trees and graphs?', 'answer': 'Trees and graphs are non-linear data structures used to represent hierarchical relationships.'}, {'question': 'What is hashing and hash tables?', 'answer': 'Hashing is a technique to map data to a fixed size array, and a hash table is a data structure that uses hashing to store and retrieve elements efficiently.'}]
 
 ```
-    Sure, let's create three questions to test the understanding of a student who has learned the topics you provided. Here are the questions and their answers in JSON format:
-{
-  "Question 1": "What is the purpose of an Integrated Development Environment (IDE) in the context of programming?",
-  "Answer 1": "An Integrated Development Environment (IDE) is a software application that provides a comprehensive set of tools and features to assist programmers in writing, testing, and debugging code. It helps streamline the development process and offers features like code editing, debugging tools, and project management capabilities."
-
-  "Question 2": "Can you explain the concept of 'variables' in programming and provide an example of declaring and initializing a variable?",
-  "Answer 2": "In programming, a variable is a symbolic name for a memory location that stores data. Variables are used to store and manipulate information in a program. Here's an example in Python: 'x = 10;' declares a variable named 'x' and assigns the value 10 to it."
-
-  "Question 3": "What is the difference between a high-level programming language and a low-level programming language? Give examples of each.",
-  "Answer 3": "A high-level programming language is designed to be easily understood by humans and is closer to natural language. It provides abstractions and simplifications, making it easier to write and read code. Examples include Python, Java, and JavaScript. In contrast, low-level programming languages are closer to the machine code and are less human-readable. They provide more direct control over hardware but are less user-friendly. Examples include Assembly language and C."
-}
-These questions should help assess a student's understanding of the provided topics related to programming.
-
+ - """Follow my instructions precisely. Everytime you receive an input list in the format:
+    [
+    "Introduction to Programming",
+    "Programming languages and paradigms",
+    "Setting up the development environment",
+    ]
+    Write 3 questions to test the understanding of a student who has learned these. Give the output in the format:
+    {"questions":
+    [
+        {"question": "What is programming?", "answer": "Programming is the process of writing instructions for a computer to execute."},
+        {"question": "What are programming languages?", "answer": "Programming languages are formal languages used to communicate instructions to a computer."},
+        {"question": "Why is setting up the development environment important?", "answer": "Setting up the development environment ensures that all necessary software and tools are installed and configured for programming."}
+    ]
+    }
+    """
+    [['Introduction to Quantum Computing', 'Classical vs. Quantum Computing', 'Quantum Superposition', 'Quantum Entanglement', 'Qubits and Quantum Gates'], ['Quantum Circuit Model', 'Measurement and Quantum States', 'Bloch Sphere Representation', 'Multiple Qubit Systems', 'Quantum Fourier Transform'], ["Quantum Algorithms: Deutsch's Algorithm", "Quantum Algorithms: Grover's Algorithm", 'Quantum Error Correction', 'Noise and Decoherence', 'Introduction to Quantum Simulators and Quantum Computers'], ['Physical Realizations of Qubits', 'Superconducting Qubits', 'Trapped Ion Qubits', 'Topological Qubits', 'Quantum Circuits and Gate Implementations'], ['Quantum Computing Languages and Libraries', 'Quantum Programming Paradigms', 'Quantum Applications: Cryptography', 'Quantum Applications: Optimization', 'Quantum Applications: Machine Learning']]
 ```
- - Given topics: 
-[
-    "Introduction to Quantum Mechanics",
-    "Classical vs. Quantum Bits (Qubits)",
-    "Superposition and Entanglement",
-    "Quantum Gates and Circuits"
-  ]
-
-Write 3 questions to test the understanding of a student who has learned these. Take a deep breath and solve this step-by-step. Give the answers together in a json file format {question: answer}
-```
-Sure, here are three questions to test the understanding of a student who has learned the topics "Introduction to Quantum Mechanics," "Classical vs. Quantum Bits (Qubits)," "Superposition and Entanglement," and "Quantum Gates and Circuits." The answers are provided in JSON format as requested:
-
-{
-  "Question 1": "What is the fundamental difference between classical bits and quantum bits (qubits)?",
-  "Answer 1": "Classical bits are binary and can only represent 0 or 1, while qubits can exist in a superposition of states, representing both 0 and 1 simultaneously until measured."
-
-  "Question 2": "Explain the concept of superposition and provide an example involving qubits.",
-  "Answer 2": "Superposition is a quantum phenomenon where a qubit can exist in a linear combination of multiple states simultaneously. For example, a qubit can be in a superposition of |0⟩ and |1⟩, represented as α|0⟩ + β|1⟩, where α and β are complex amplitudes."
-
-  "Question 3": "What is entanglement in quantum mechanics, and why is it considered a remarkable property of quantum systems?",
-  "Answer 3": "Entanglement is a quantum phenomenon where two or more qubits become correlated in such a way that the state of one qubit is dependent on the state of another, even when they are separated by large distances. It is remarkable because it allows for instantaneous correlation and has applications in quantum communication and computing."
-}
-These questions should help assess the student's understanding of the key concepts in quantum mechanics that you mentioned.
+['Introduction to Quantum Computing', 'Classical vs. Quantum Computing', 'Quantum Superposition', 'Quantum Entanglement', 'Qubits and Quantum Gates']
+[{'question': 'What is quantum computing?', 'answer': 'Quantum computing is a field that uses principles of quantum mechanics, such as superposition and entanglement, to perform computation.'}, {'question': 'How is quantum computing different from classical computing?', 'answer': 'Classical computing uses bits to represent information as either 0 or 1, while quantum computing uses qubits that can be in a superposition of both 0 and 1.'}, {'question': 'What is quantum superposition?', 'answer': 'Quantum superposition is the ability of a qubit to be in a state that is a combination of 0 and 1 at the same time, represented by a probability distribution.'}]
+['Quantum Circuit Model', 'Measurement and Quantum States', 'Bloch Sphere Representation', 'Multiple Qubit Systems', 'Quantum Fourier Transform']
+[{'question': 'What is the quantum circuit model?', 'answer': 'The quantum circuit model is a representation of quantum computation using quantum logic gates.'}, {'question': 'How are quantum states measured?', 'answer': 'Quantum states are measured using quantum measurement devices, which extract information about the state of a quantum system.'}, {'question': 'What is the Bloch sphere representation?', 'answer': 'The Bloch sphere is a geometric representation of the state of a qubit, where each point on the sphere corresponds to a unique quantum state.'}]
+["Quantum Algorithms: Deutsch's Algorithm", "Quantum Algorithms: Grover's Algorithm", 'Quantum Error Correction', 'Noise and Decoherence', 'Introduction to Quantum Simulators and Quantum Computers']
+[{'question': "What is Deutsch's Algorithm?", 'answer': "Deutsch's algorithm is a quantum algorithm that solves a specific problem faster than any classical algorithm."}, {'question': "What is Grover's Algorithm?", 'answer': "Grover's algorithm is a quantum algorithm that can be used to search an unsorted database with a quadratic speedup compared to classical algorithms."}, {'question': 'Why is Quantum Error Correction important?', 'answer': 'Quantum error correction is important because quantum computers are susceptible to errors caused by noise and decoherence, and error correction techniques help mitigate these errors.'}, {'question': 'What is Noise and Decoherence in quantum computing?', 'answer': 'Noise refers to any external interference that affects the stability and accuracy of qubits in a quantum computer, while decoherence refers to the loss of quantum coherence and the transition from quantum behavior to classical behavior.'}, {'question': 'What are Quantum Simulators and Quantum Computers used for?', 'answer': 'Quantum simulators and quantum computers are used for performing computations that are beyond the capabilities of classical computers, particularly in the field of quantum algorithms and cryptography.'}]
+['Physical Realizations of Qubits', 'Superconducting Qubits', 'Trapped Ion Qubits', 'Topological Qubits', 'Quantum Circuits and Gate Implementations']
+[{'question': 'What is a qubit?', 'answer': 'A qubit is the basic unit of quantum information, analogous to a classical bit.'}, {'question': 'What is a superconducting qubit?', 'answer': 'A superconducting qubit is a type of qubit that uses superconducting circuits to store and manipulate information.'}, {'question': 'What is a trapped ion qubit?', 'answer': 'A trapped ion qubit is a type of qubit that uses individual ions trapped and manipulated using electromagnetic fields.'}, {'question': 'What is a topological qubit?', 'answer': 'A topological qubit is a type of qubit that relies on the topological properties of materials to store and manipulate quantum information.'}, {'question': 'What are quantum circuits?', 'answer': 'Quantum circuits are a sequence of quantum gates and operations applied to qubits to perform quantum computations.'}, {'question': 'How are quantum gates implemented?', 'answer': 'Quantum gates are implemented by manipulating the states of qubits using physical processes specific to the type of qubit.'}]
+['Quantum Computing Languages and Libraries', 'Quantum Programming Paradigms', 'Quantum Applications: Cryptography', 'Quantum Applications: Optimization', 'Quantum Applications: Machine Learning']
+[{'question': 'What is quantum computing?', 'answer': 'Quantum computing is a field that uses principles of quantum mechanics to perform computations.'}, {'question': 'What are quantum programming paradigms?', 'answer': 'Quantum programming paradigms are programming frameworks and models used to write algorithms for quantum computers.'}, {'question': 'Why is cryptography important in quantum applications?', 'answer': 'Cryptography in quantum applications ensures secure communication and data protection.'}, {'question': 'What is the role of optimization in quantum applications?', 'answer': 'Optimization in quantum applications involves finding the best solution among multiple possibilities.'}, {'question': 'How is machine learning applied in quantum applications?', 'answer': 'Machine learning in quantum applications involves using quantum algorithms to improve data analysis and pattern recognition tasks.'}]
 
 ```
