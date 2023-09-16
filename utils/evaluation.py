@@ -25,13 +25,18 @@ def get_questions(subtopics: List[List]):
         ]
         }
         """
-        results = ChatCompletion.create(model="gpt-3.5-turbo", messages=[
-            {"role": "user", "content": prompt},
-            {"role": "user", "content": str(topic)}
-        ])
-        print(results["choices"][0]["message"])
-        print(results["choices"][0]["message"]["content"])
-        questions["questions"]+= json.loads(results["choices"][0]["message"]["content"])["questions"]
+        while True:
+            try:
+                results = ChatCompletion.create(model="gpt-3.5-turbo", messages=[
+                    {"role": "user", "content": prompt},
+                    {"role": "user", "content": str(topic)}
+                ])
+                questions["questions"]+= json.loads(results["choices"][0]["message"]["content"])["questions"]
+            except:
+                continue
+            else:
+                break
+
     return questions
 
 get_questions([[
