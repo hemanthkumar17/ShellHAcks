@@ -50,4 +50,47 @@ def compare(question, answer, answer_truth):
         ate = openai.Embedding.create(input = [k], model="text-embedding-ada-002")['data'][0]['embedding']
         res += (util.pytorch_cos_sim(ae, qe) + util.pytorch_cos_sim(ae, ate)) / 2
     res = res.flatten()[0]
-    return res >= 0.8 * len(question),res
+    return res >= 0.8 * len(question), res
+
+def evaluate_test(qa_pairs, answer_truth):
+    """Evaluates a list(list(questions)) to give a list(list(answers)) and list(list(answer_truth))
+    The first dimension defines the different subtopics (weeks in our case), and second dimension being the list of questions
+    Args:
+        qa_pairs ("questions": List({"question": "answer"})): Questions and answersthat ChatGPT generated
+        answer_truth (List(List(String))): Answer Given by the user
+
+    Returns:
+        _type_: _description_
+    """
+    questions = [x["question"] for x in qa_pairs["questions"]]
+    answers = [x["answer"] for x in qa_pairs["questions"]]
+    res = []
+    for i, j, k in zip(questions, answers, answer_truth):
+        res.append([compare(i, j, k)])
+    return res
+
+
+def get_course_list_api(topic = "Programming"):
+  response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "user", 
+         "content": """Write a concise course plan about an introduction course to \"""" + topic + """}\" for students who are either starting to learn it or have covered a few topics in it. 
+         Write a list of all subtopics that will be taught each week. Remove all the course recap, projects, assignments, and quizzes from the course. 
+         Take a deep breath and think about this step by step. Now give me a list of sub-topics to include for teaching them. Give the answer in JSON format, {{week: topics}}"""}
+    ]
+    )
+  return response
+
+def get_groups():
+    
+  groups=[]
+  response=get_course_list_api()
+  response=response["choices"][0]["message"]["content"]
+  response = response.replace("\\", "").replace("\n", "")
+  response=json.loads(response)
+
+  for i in response:
+     groups.append(response[i])
+
+  return groups
