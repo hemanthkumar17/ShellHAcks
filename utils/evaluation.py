@@ -38,18 +38,3 @@ def get_questions(subtopics: List[List]):
                 break
 
     return questions
-
-get_questions([[
-    "Introduction to Programming",
-    "Programming languages and paradigms",
-    "Setting up the development environment",
-    "Writing and running simple programs",
-    "Basic syntax and variables"
-  ],
-  [
-    "Introduction to object-oriented programming (OOP)",
-    "Classes and objects",
-    "Inheritance and polymorphism",
-    "Encapsulation and abstraction",
-    "Introduction to libraries and frameworks"
-  ]])
