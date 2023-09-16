@@ -3,7 +3,10 @@ import openai
 from openai import ChatCompletion
 from api_keys import OPENAPI_KEY
 
+import torch
 import json
+from sentence_transformers import util
+
 
 openai.api_key = OPENAPI_KEY
 def get_questions(subtopics: List[List]):
@@ -38,3 +41,13 @@ def get_questions(subtopics: List[List]):
                 break
 
     return questions
+
+def compare(question, answer, answer_truth):
+    res = 0
+    for i, j, k in zip(question, answer, answer_truth):
+        qe = openai.Embedding.create(input = [i], model="text-embedding-ada-002")['data'][0]['embedding']
+        ae = openai.Embedding.create(input = [j], model="text-embedding-ada-002")['data'][0]['embedding']
+        ate = openai.Embedding.create(input = [k], model="text-embedding-ada-002")['data'][0]['embedding']
+        res += (util.pytorch_cos_sim(ae, qe) + util.pytorch_cos_sim(ae, ate)) / 2
+    res = res.flatten()[0]
+    return res >= 0.8 * len(question),res
