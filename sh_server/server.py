@@ -6,7 +6,7 @@ app = Flask(__name__)
 from firebase import firebase
 fb = firebase.FirebaseApplication('https://dynamo-1697a-default-rtdb.firebaseio.com/', None)
 
-from utils.evaluation import get_groups, get_questions
+from utils.evaluation import get_groups, get_questions, evaluate_test
 CORS(app)
 
 @app.route('/')
@@ -32,22 +32,34 @@ def get_topic():
 # get the set of questions
 @app.route('/questions', methods=["GET"])
 def send_questions():
+    # send the questions to client
     data = fb.get(username, '')
     for topic in data:
         subtopics = list(data[topic].values())[0]
         # print(topic)
     print(subtopics)
     questions = get_questions(subtopics)
-    # for q in zip(questions, subtopics[0]):
-    #     fb.post(username + "/" + topic + )
-    # send the questions to client
-    print(questions)
     flatten = lambda x: [item for sublist in x for item in sublist]
     return flatten(questions["questions"])
 
 # sending the answer back
 @app.route('/answers')
 def get_answers():
+    try:
+        data =  request.get_json()
+        print("data recieved from client"+data)
+        qa_pairs = data.qa_pairs
+        answers = data.answers
+        evals = evaluate_test(qa_pairs=qa_pairs, answer_truth=answers)
+
+        
+        # data = fb.get(username, '')
+        # for topic in data:
+        #     subtopics = list(data[topic].values())[0]
+        # Return evals
+        return jsonify({"message":"topic recieved"})
+    except Exception as e:
+        return jsonify({'error':str(e)}), 400
     # get the answers and do the evals
     return "f"
 
