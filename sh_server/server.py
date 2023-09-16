@@ -13,6 +13,7 @@ CORS(app)
 def hello_world():
     return 'Hello world!'
 
+username = "Hemanth"
 
 @app.route('/topic', methods =["GET","POST"])
 def get_topic():
@@ -20,9 +21,8 @@ def get_topic():
     # use this topic to generate the set of questions  
     try:
         data =  request.get_json()
-        username = "Hemanth"
         sub = get_groups(data.topic)
-        fb.post(username + "/" + data.topic, {x: p for x, p in enumerate(sub)})
+        fb.post(username + "/" + data.topic, {x: p for x, p in enumerate(sub)}, merge=True)
 
         print("data recieved from client"+data)
         return jsonify({"message":"topic recieved"})
@@ -30,11 +30,16 @@ def get_topic():
         return jsonify({'error':str(e)}), 400
 
 # get the set of questions
-@app.route('/questions')
+@app.route('/questions', methods=["GET"])
 def send_questions():
-    
+    data = fb.get(username, '')
+    for topic in data:
+        subtopics = data[topic].values()
+        # print(topic)
+    print(subtopics)
+    print("get")
     # send the questions to client 
-    return "a"
+    return ""
 
 # sending the answer back
 @app.route('/answers')
@@ -47,4 +52,3 @@ def get_answers():
 def send_report():
     # send the generated report back to client
     return "send"
-
