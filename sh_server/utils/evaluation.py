@@ -1,7 +1,7 @@
 from typing import List
 import openai
 from openai import ChatCompletion
-from api_keys import OPENAPI_KEY
+from .api_keys import OPENAPI_KEY
 
 # import torch
 import json
