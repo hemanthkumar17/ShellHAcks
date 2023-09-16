@@ -1,5 +1,9 @@
 from flask import Flask
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
+
 @app.route('/')
 def hello_world():
     return 'Hello world!'
@@ -9,6 +13,7 @@ def hello_world():
 def get_topic():
     # get the topic from the user
     # use this topic to generate the set of questions  
+    print(req)
     return "c"
 
 # get the set of questions

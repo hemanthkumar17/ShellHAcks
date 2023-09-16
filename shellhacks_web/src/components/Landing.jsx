@@ -33,7 +33,7 @@ function Landing() {
           onClick={async () => {
             await axios.post(
               // navigate("/quiz");
-              `${path}/admin/courses`,
+              `${path}/topic`,
               {
                 topic: topic,
               },
