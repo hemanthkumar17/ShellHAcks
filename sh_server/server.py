@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -9,12 +9,16 @@ def hello_world():
     return 'Hello world!'
 
 
-@app.route('/topic')
+@app.route('/topic', methods =["GET","POST"])
 def get_topic():
     # get the topic from the user
     # use this topic to generate the set of questions  
-    print(req)
-    return "c"
+    try:
+        data =  request.get_json();
+        print("data recieved from client"+data)
+        return jsonify({"message":"topic recieved"})
+    except Exception as e:
+        return jsonify({'error':str(e)}), 400
 
 # get the set of questions
 @app.route('/questions')
