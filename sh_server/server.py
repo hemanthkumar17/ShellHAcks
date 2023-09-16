@@ -1,26 +1,33 @@
-from flask import Flask
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+
 app = Flask(__name__)
 
 from firebase import firebase
 fb = firebase.FirebaseApplication('https://dynamo-1697a-default-rtdb.firebaseio.com/', None)
 
 from utils.evaluation import get_groups
+CORS(app)
 
 @app.route('/')
 def hello_world():
     return 'Hello world!'
 
 
-@app.route('/topic')
+@app.route('/topic', methods =["GET","POST"])
 def get_topic():
     # get the topic from the user
     # use this topic to generate the set of questions  
-    topic = "Programming"
-    username = "Hemanth"
-    sub = get_groups(topic)
-    fb.post(username + "/" + topic, {x: p for x, p in enumerate(sub)})
-    print(fb.get(username + "/", topic))
-    return "c"
+    try:
+        data =  request.get_json()
+        username = "Hemanth"
+        sub = get_groups(data.topic)
+        fb.post(username + "/" + data.topic, {x: p for x, p in enumerate(sub)})
+
+        print("data recieved from client"+data)
+        return jsonify({"message":"topic recieved"})
+    except Exception as e:
+        return jsonify({'error':str(e)}), 400
 
 # get the set of questions
 @app.route('/questions')

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
-const path = "http://127.0.0.1:5000/";
+const path = "http://127.0.0.1:5000";
 
 function Landing() {
   const navigate = useNavigate();
@@ -30,16 +30,17 @@ function Landing() {
             marginLeft: 8,
             height: 32,
           }}
-          onClick={async () => {
-            await axios.post(
+          onClick={() => {
+            axios.post(
               // navigate("/quiz");
-              `${path}/admin/courses`,
+              `${path}/topic`,
               {
                 topic: topic,
               },
               {
                 headers: {
                   //   Authorization: "Bearer " + localStorage.getItem("token"),
+                  "Content-Type": "application/json",
                 },
               }
             );
