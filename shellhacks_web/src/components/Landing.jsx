@@ -30,8 +30,8 @@ function Landing() {
             marginLeft: 8,
             height: 32,
           }}
-          onClick={() => {
-            axios.post(
+          onClick={async () => {
+            const response = await axios.post(
               // navigate("/quiz");
               `${path}/topic`,
               {
@@ -44,6 +44,13 @@ function Landing() {
                 },
               }
             );
+
+            console.log(response);
+            if (response.status != 200) {
+              throw new Error("Request failed");
+            } else {
+              navigate("/quiz");
+            }
           }}
         >
           LET'S GO
