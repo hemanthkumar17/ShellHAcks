@@ -1,7 +1,8 @@
 import json
 import requests
 import openai
-openai.api_key = "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"
+import api_keys
+openai.api_key = api_keys.API_KEY
 # print(openai.Model.list())
 response={
   "Week 1": [
