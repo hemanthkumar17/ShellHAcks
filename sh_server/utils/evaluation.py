@@ -34,7 +34,7 @@ def get_questions(subtopics: List[List]):
                     {"role": "user", "content": prompt},
                     {"role": "user", "content": str(topic)}
                 ])
-                questions["questions"]+= json.loads(results["choices"][0]["message"]["content"])["questions"]
+                questions["questions"].append(json.loads(results["choices"][0]["message"]["content"])["questions"])
             except:
                 continue
             else:

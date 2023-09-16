@@ -6,7 +6,7 @@ app = Flask(__name__)
 from firebase import firebase
 fb = firebase.FirebaseApplication('https://dynamo-1697a-default-rtdb.firebaseio.com/', None)
 
-from utils.evaluation import get_groups
+from utils.evaluation import get_groups, get_questions
 CORS(app)
 
 @app.route('/')
@@ -34,12 +34,16 @@ def get_topic():
 def send_questions():
     data = fb.get(username, '')
     for topic in data:
-        subtopics = data[topic].values()
+        subtopics = list(data[topic].values())[0]
         # print(topic)
     print(subtopics)
-    print("get")
-    # send the questions to client 
-    return ""
+    questions = get_questions(subtopics)
+    # for q in zip(questions, subtopics[0]):
+    #     fb.post(username + "/" + topic + )
+    # send the questions to client
+    print(questions)
+    flatten = lambda x: [item for sublist in x for item in sublist]
+    return flatten(questions["questions"])
 
 # sending the answer back
 @app.route('/answers')
