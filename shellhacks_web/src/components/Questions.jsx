@@ -84,9 +84,10 @@ function QuestionItem(props) {
 
   const handleNextCard = () => {
     // setCurrentCardIndex((prevIndex) => (prevIndex + 1) % cardsData.length);
-    if (!answer) {
+    if (answer.length > 0) {
       setAnswers([...answers, answer]);
       props.changeIndex(props.index + 1);
+      setAnswer("");
     }
   };
 
