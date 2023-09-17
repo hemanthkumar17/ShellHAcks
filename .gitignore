@@ -2,3 +2,4 @@ api_keys.py
 utils/__pycache__/*
 sh_server/utils/__pycache__/*
 sh_server/__pycache__/*
+sh_server/server_env/*
