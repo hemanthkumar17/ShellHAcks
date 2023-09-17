@@ -27,3 +27,7 @@ body {
 .topic_placeholder {
   font-size: large;
 }
+
+.grid_container {
+  display: flex;
+}

@@ -117,7 +117,7 @@ def send_videos():
         )
     return response
 
-@app.route("/practiceqa", methods=["GET"])
+@app.route("/practiceqa", methods=["GET","POST"])
 def send_qa():
     data = fb.get(username, '')
     

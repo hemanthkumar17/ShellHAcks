@@ -11,15 +11,12 @@ import { useEffect } from "react";
 import { Loading } from "./Loading";
 import { BASE_URL } from "../config";
 
-const path = "http://127.0.0.1:5000";
-
 function Question() {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     async function getQuestions() {
-      const response = await axios.get(`${path}/questions`, {}, {});
-      // console.log(response.data);
+      const response = await axios.get(`${BASE_URL}/questions`, {}, {});
       setQuestions(response.data);
     }
 
@@ -131,7 +128,11 @@ function QuestionItem(props) {
 
 function SubmitQuiz({ answers, questions }) {
   const navigate = useNavigate("");
+<<<<<<< HEAD
   const [load, setLoad] = useState(false);
+=======
+
+>>>>>>> 29c88e4 (pre-deployment code)
   return (
     <div className="submit-btn">
       <Button
@@ -154,7 +155,7 @@ function SubmitQuiz({ answers, questions }) {
           if (response.status != 200) {
             throw new Error("Request failed");
           } else {
-            navigate("/learn");
+            navigate("/answers");
           }
         }}
       >
