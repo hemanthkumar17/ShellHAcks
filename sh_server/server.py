@@ -22,9 +22,8 @@ def get_topic():
     try:
         data =  request.get_json()
 
-        
+        # print("avi")
         sub = get_groups(data['topic'])
-        print(sub)
         try:
             fb.post(username + "/" + data['topic'], {f'week_{x}': {"topics": p , "learnt": "false"} for x, p in enumerate(sub)})
             print("data recieved from client",data)

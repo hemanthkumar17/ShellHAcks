@@ -11,21 +11,23 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
 
-const path = "";
+const path = "http://127.0.0.1:5000";
 
 function Question() {
   const [cardClicked, setCardClicked] = useState(false);
   const [questions, setQuestions] = useState([]);
 
-  useEffect(async () => {
-    const response = await axios.get(`{path}/questions`, {}, {});
+  useEffect(() => {
+    async function getQuestions() {
+      const response = await axios.get(`${path}/questions`, {}, {});
 
-    console.log(response);
+      setQuestions(response.data);
+    }
+
+    getQuestions();
   }, []);
-  const handleCardClicked = () => {
-    setCardClicked(!cardClicked);
-  };
 
   return (
     <div>
@@ -36,7 +38,8 @@ function Question() {
   );
 }
 
-function QuestionCard() {
+function QuestionCard({ questions }) {
+  console.log("Questions length: " + questions);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
   const handleNextCard = () => {
@@ -58,26 +61,9 @@ function QuestionCard() {
         <button className="nav-button prev" onClick={handlePrevCard}>
           &lt;
         </button>
-        <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
-                totam, molestias neque voluptatum laborum alias impedit iste
-                voluptas eum consequuntur?
-              </Typography>
-              {/* <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
-                    </Typography> */}
-              <TextField
-                id="outlined-basic"
-                label="Type your answer here"
-                variant="outlined"
-              />
-            </CardContent>
-          </CardActionArea>
-        </Card>
+        {questions.map((question) => {
+          <QuestionItem question={question} />;
+        })}
         <button className="nav-button next" onClick={handleNextCard}>
           &gt;
         </button>
@@ -85,6 +71,29 @@ function QuestionCard() {
       {<SubmitQuiz index={currentCardIndex} />}
     </div>
   );
+}
+
+function QuestionItem({ question }) {
+  <Card sx={{ maxWidth: 345 }}>
+    <CardActionArea>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit totam,
+          molestias neque voluptatum laborum alias impedit iste voluptas eum
+          consequuntur?
+        </Typography>
+        {/* <Typography variant="body2" color="text.secondary">
+              Lizards are a widespread group of squamate reptiles, with over 6,000
+              species, ranging across all continents except Antarctica
+          </Typography> */}
+        <TextField
+          id="outlined-basic"
+          label="Type your answer here"
+          variant="outlined"
+        />
+      </CardContent>
+    </CardActionArea>
+  </Card>;
 }
 
 function SubmitQuiz({ index }) {
