@@ -33,6 +33,7 @@ function Landing() {
           class="text-field"
           onChange={(e) => setTopic(e.target.value)}
         />
+        <div className="button-div">
         <Button
           variant="contained"
           class="topic-button"
@@ -61,6 +62,7 @@ function Landing() {
         >
           LET'S GO
         </Button>
+        </div>
       </div>
     </div>
   );

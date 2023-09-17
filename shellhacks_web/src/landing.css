@@ -61,6 +61,13 @@ body {
     border: 2px solid #DFC5FE; 
   }
 
+  .button-div{
+    margin-top:10px;
+  }
+
+  ::placeholder {
+    text-align: center; 
+ }
   
   
 
