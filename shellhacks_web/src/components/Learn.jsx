@@ -27,14 +27,20 @@ function Learn(){
     async function getVideos() {
         const response = await axios.get(`${path}/videos`, {}, {});
         console.log(response.data);
+        console.log(response.data.ids);
         setVidIds(response.data);
       }
     getReport();
     getVideos();
     }, []);
     return (<div>
-      {vidIds.map((videoId) => (
-        <iframe src={`https://www.youtube.com/embed/${videoId}`}></iframe>
+      {vidIds.ids?.map((videoId) => (
+        <iframe 
+        sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
+        frameborder='10 | 10'
+        allow='autoplay; encrypted-media'
+        allowFullScreen
+        src={`https://www.youtube.com/embed/${videoId}`}></iframe>
       ))} 
     </div>);
 };

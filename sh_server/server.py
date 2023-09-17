@@ -109,7 +109,11 @@ def send_videos():
         weeks = data[topic][hash]
         subtopics = [data[topic][hash][week]['topics'] for week in weeks if not data[topic][hash][week]['learnt']]
 
-        response = jsonify({"message": get_vids(subtopics[0])})
+        vids = get_vids(subtopics[0])
+        response = jsonify({
+            "ids": list(map(lambda x: x["id"], vids)),
+            "links": list(map(lambda x: x["link"], vids))
+            })
         return response
     except Exception as e:
         print(e)
