@@ -77,6 +77,8 @@ function Landing() {
           <Button
             style={{
               marginTop: 8,
+              background: "#0072bb",
+              color: "#f5f5f5",
             }}
             variant="contained"
             // class="topic-button"

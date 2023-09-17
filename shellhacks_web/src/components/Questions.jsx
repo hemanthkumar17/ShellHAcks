@@ -25,7 +25,7 @@ function Question() {
 
   return (
     <div>
-      <h1>Take the QUIZ!</h1>
+      <h1>May the "Quiz" Be With You!</h1>
       <QuestionCard questions={questions} />
       {/* <BottomNav/> */}
     </div>
@@ -88,7 +88,16 @@ function QuestionItem(props) {
         {props.index === 0 ? (
           <></>
         ) : (
-          <button className="nav-button prev" onClick={handlePrevCard}>
+          <button
+            className="nav-button prev"
+            onClick={handlePrevCard}
+            style={{
+              color: "#f5f5f5",
+              background: "#0072bb",
+              border: "none",
+              borderRadius: "3px",
+            }}
+          >
             &lt;
           </button>
         )}
@@ -111,7 +120,16 @@ function QuestionItem(props) {
         {props.index === props.question.length - 1 ? (
           <></>
         ) : (
-          <button className="nav-button next" onClick={handleNextCard}>
+          <button
+            style={{
+              color: "#f5f5f5",
+              background: "#0072bb",
+              border: "none",
+              borderRadius: "3px",
+            }}
+            className="nav-button next"
+            onClick={handleNextCard}
+          >
             &gt;
           </button>
         )}

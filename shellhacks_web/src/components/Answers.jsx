@@ -70,7 +70,14 @@ function SetQandA({ questions }) {
         <Grid item xs={6}>
           <Card sx={{ maxWidth: 345, height: "100%" }}>
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                style={{
+                  color: "#0072bb",
+                }}
+              >
                 {item.question}
               </Typography>
               <Typography variant="body2" color="text.secondary">
