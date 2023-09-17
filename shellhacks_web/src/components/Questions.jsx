@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 import { Loading } from "./Loading";
+import { BASE_URL } from "../config";
 
 const path = "http://127.0.0.1:5000";
 
@@ -47,25 +48,9 @@ function QuestionCard({ questions }) {
   // });
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
-  const handleNextCard = () => {
-    // setCurrentCardIndex((prevIndex) => (prevIndex + 1) % cardsData.length);
-    setCurrentCardIndex(currentCardIndex + 1);
-    console.log(currentCardIndex);
-  };
-
-  const handlePrevCard = () => {
-    // setCurrentCardIndex((prevIndex) =>
-    // prevIndex === 0 ? cardsData.length - 1 : prevIndex - 1);
-    setCurrentCardIndex(currentCardIndex - 1);
-    console.log(currentCardIndex);
-  };
-
   return (
     <div className="question">
       <div className="card-container">
-        <button className="nav-button prev" onClick={handlePrevCard}>
-          &lt;
-        </button>
         {/* {questions &&
           questions.map((item) => {
             return <QuestionItem question={item.question} />;
@@ -75,6 +60,7 @@ function QuestionCard({ questions }) {
           <QuestionItem
             question={questions}
             index={currentCardIndex}
+            changeIndex={setCurrentCardIndex}
           ></QuestionItem>
         ) : (
           <Loading />
@@ -86,72 +72,124 @@ function QuestionCard({ questions }) {
             index={currentCardIndex}
           ></QuestionItem>
         )} */}
-        <button className="nav-button next" onClick={handleNextCard}>
-          &gt;
-        </button>
       </div>
-      {<SubmitQuiz index={currentCardIndex} />}
+      {/* {<SubmitQuiz index={currentCardIndex} />} */}
     </div>
   );
 }
 
 function QuestionItem(props) {
-  console.log("ab", props.question);
-  console.log("cd", props.index);
+  const [answers, setAnswers] = useState([]);
+  const [answer, setAnswer] = useState("");
+
+  const handleNextCard = () => {
+    // setCurrentCardIndex((prevIndex) => (prevIndex + 1) % cardsData.length);
+    if (!answer) {
+      setAnswers([...answers, answer]);
+      props.changeIndex(props.index + 1);
+    }
+  };
+
+  const handlePrevCard = () => {
+    // setCurrentCardIndex((prevIndex) =>
+    // prevIndex === 0 ? cardsData.length - 1 : prevIndex - 1);
+    props.changeIndex(props.index - 1);
+  };
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {props.question[props.index].question}
-          </Typography>
-          {/* <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000
-              species, ranging across all continents except Antarctica
-          </Typography> */}
-          <TextField
-            id="outlined-basic"
-            label="Type your answer here"
-            variant="outlined"
-          />
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <div className="questions_container">
+      {/* <button className="nav-button prev" onClick={handlePrevCard}>
+        &lt;
+      </button> */}
+      <div className="row_container">
+        {props.index === 0 ? (
+          <></>
+        ) : (
+          <button className="nav-button prev" onClick={handlePrevCard}>
+            &lt;
+          </button>
+        )}
+        <Card sx={{ maxWidth: 345 }}>
+          <CardActionArea>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {props.question[props.index].question}
+              </Typography>
+
+              <TextField
+                id="outlined-basic"
+                label="Type your answer here"
+                variant="outlined"
+                onChange={(e) => {
+                  setAnswer(e.target.value);
+                }}
+              />
+            </CardContent>
+          </CardActionArea>
+        </Card>
+        {props.index === props.question.length - 1 ? (
+          <></>
+        ) : (
+          <button className="nav-button next" onClick={handleNextCard}>
+            &gt;
+          </button>
+        )}
+      </div>
+
+      {props.index === props.question.length - 1 ? (
+        <SubmitQuiz index={props.index} />
+      ) : (
+        <></>
+      )}
+    </div>
   );
 }
 
-function SubmitQuiz({ index }) {
+function SubmitQuiz() {
   const navigate = useNavigate("");
-  if (index == 3) {
-    return (
-      <div className="submit-btn">
-        <Button
-          variant="contained"
-          onClick={() => {
+
+  return (
+    <div className="submit-btn">
+      <Button
+        variant="contained"
+        onClick={async () => {
+          const response = await axios.post(
+            `${BASE_URL}/answers`,
+            {
+              answers: answers,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          if (response.status != 200) {
+            throw new Error("Request failed");
+          } else {
             navigate("/learn");
-          }}
-        >
-          SUBMIT
-        </Button>
-      </div>
-    );
-  } else {
-    return <></>;
-  }
+          }
+        }}
+      >
+        SUBMIT
+      </Button>
+    </div>
+  );
 }
 
-function BottomNav() {
-  const [isCompleted, setIsCompleted] = useState(false);
+// function BottomNav() {
+//   const [isCompleted, setIsCompleted] = useState(false);
 
-  if (isCompleted) {
-    return <Button variant="contained">SUBMIT</Button>;
-  } else {
-    return (
-      <Stack spacing={2}>
-        <Pagination count={6} size="large" color="primary" />
-      </Stack>
-    );
-  }
-}
+//   if (isCompleted) {
+//     return <Button variant="contained">SUBMIT</Button>;
+//   } else {
+//     return (
+//       <Stack spacing={2}>
+//         <Pagination count={6} size="large" color="primary" />
+//       </Stack>
+//     );
+//   }
+// }
 
 export default Question;

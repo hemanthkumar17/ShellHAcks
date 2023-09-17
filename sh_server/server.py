@@ -83,7 +83,7 @@ def get_answers():
 
     except Exception as e:
         return jsonify({'error':str(e)}), 400
-    return "f"
+    
 
 # eval report
 @app.route("/report", methods=['GET'])
