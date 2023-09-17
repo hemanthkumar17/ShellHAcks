@@ -12,6 +12,7 @@ import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
+import { Loading } from "./Loading";
 
 const path = "http://127.0.0.1:5000";
 
@@ -41,9 +42,9 @@ function Question() {
 function QuestionCard({ questions }) {
   // console.log(props.questions);
 
-  questions.map((item) => {
-    console.log(item.question);
-  });
+  // questions.map((item) => {
+  //   console.log(item.question);
+  // });
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
   const handleNextCard = () => {
@@ -65,10 +66,26 @@ function QuestionCard({ questions }) {
         <button className="nav-button prev" onClick={handlePrevCard}>
           &lt;
         </button>
-        {/* {props &&
-          props.map((question) => {
-            <QuestionItem question={question} />;
+        {/* {questions &&
+          questions.map((item) => {
+            return <QuestionItem question={item.question} />;
           })} */}
+
+        {questions.length > 0 ? (
+          <QuestionItem
+            question={questions}
+            index={currentCardIndex}
+          ></QuestionItem>
+        ) : (
+          <Loading />
+        )}
+
+        {/* {questions && (
+          <QuestionItem
+            question={questions}
+            index={currentCardIndex}
+          ></QuestionItem>
+        )} */}
         <button className="nav-button next" onClick={handleNextCard}>
           &gt;
         </button>
@@ -78,15 +95,15 @@ function QuestionCard({ questions }) {
   );
 }
 
-function QuestionItem({ question }) {
+function QuestionItem(props) {
+  console.log("ab", props.question);
+  console.log("cd", props.index);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
-            totam, molestias neque voluptatum laborum alias impedit iste
-            voluptas eum consequuntur?
+            {props.question[props.index].question}
           </Typography>
           {/* <Typography variant="body2" color="text.secondary">
               Lizards are a widespread group of squamate reptiles, with over 6,000
