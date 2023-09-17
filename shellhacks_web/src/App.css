@@ -41,7 +41,6 @@
   color: #888;
 }
 
-
 .card-container {
   display: flex;
 }
@@ -49,4 +48,8 @@
 .submit-btn {
   margin-top: 8px;
   width: inherit;
+}
+
+.row_container {
+  display: flex;
 }
