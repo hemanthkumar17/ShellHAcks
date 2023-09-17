@@ -37,7 +37,7 @@ function Question() {
 
 function QuestionCard({ questions }) {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-
+  
   return (
     <div className="question">
       <div className="card-container">
@@ -131,13 +131,13 @@ function QuestionItem(props) {
 
 function SubmitQuiz({ answers, questions }) {
   const navigate = useNavigate("");
-
-  console.log(answers);
+  const [load, setLoad] = useState(false);
   return (
     <div className="submit-btn">
       <Button
         variant="contained"
         onClick={async () => {
+          setLoad(true);
           const response = await axios.post(
             `${BASE_URL}/answers`,
             {
@@ -150,7 +150,7 @@ function SubmitQuiz({ answers, questions }) {
               },
             }
           );
-
+          setLoad(false);
           if (response.status != 200) {
             throw new Error("Request failed");
           } else {
@@ -160,6 +160,7 @@ function SubmitQuiz({ answers, questions }) {
       >
         SUBMIT
       </Button>
+      {load === true ? <Loading /> : null}
     </div>
   );
 }
