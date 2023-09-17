@@ -41,23 +41,39 @@ function Landing() {
 
   return (
     <div>
-      <div style={{ position: "absolute" }}>
+      {/* <div style={{ position: "absolute" }}>
         <Particles height="100vh" width="100vw" params={particlesConfig} />
-      </div>
+      </div> */}
 
-      <h2>SmartTrail: Personalized Learning Journeys for All</h2>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h2>SmartTrail: Personalized Learning Journeys for All</h2>
 
-      <div>
-        <input
-          type="text"
-          placeholder="Topic to Learn"
-          class="text-field"
-          onChange={(e) => setTopic(e.target.value)}
-        />
-        <div className="button-div">
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Topic to Learn"
+            class="text-field"
+            onChange={(e) => setTopic(e.target.value)}
+          />
+          {/* <div className="button-div"> */}
           <Button
+            style={{
+              marginTop: 8,
+            }}
             variant="contained"
-            class="topic-button"
+            // class="topic-button"
             onClick={async () => {
               if (topic.trim === "") {
                 return;
@@ -86,7 +102,11 @@ function Landing() {
           >
             LET'S GO
           </Button>
+<<<<<<< HEAD
           {load === true ? <Loading /> : null}
+=======
+          {/* </div> */}
+>>>>>>> 324ec69 (updating the css)
         </div>
       </div>
     </div>
