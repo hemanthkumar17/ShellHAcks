@@ -78,8 +78,8 @@ function Landing() {
               if (topic.trim === "") {
                 return;
               }
-              
-              setLoad(true)
+
+              setLoad(true);
               const response = await axios.post(
                 `${path}/topic`,
                 {
@@ -91,7 +91,7 @@ function Landing() {
                   },
                 }
               );
-              setLoad(false)
+              setLoad(false);
               if (response.status != 200) {
                 throw new Error("Request failed");
               } else {
@@ -103,7 +103,10 @@ function Landing() {
             LET'S GO
           </Button>
           {load === true ? <Loading /> : null}
+<<<<<<< HEAD
           {/* </div> */}
+=======
+>>>>>>> 56490ae (pre-deployment code)
         </div>
       </div>
     </div>
