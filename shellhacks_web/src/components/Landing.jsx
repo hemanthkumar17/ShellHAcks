@@ -102,11 +102,8 @@ function Landing() {
           >
             LET'S GO
           </Button>
-<<<<<<< HEAD
           {load === true ? <Loading /> : null}
-=======
           {/* </div> */}
->>>>>>> 324ec69 (updating the css)
         </div>
       </div>
     </div>
