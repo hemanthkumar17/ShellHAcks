@@ -5,26 +5,26 @@ const path = "http://127.0.0.1:5000";
 import React from "react";
 // import YoutubeEmbed from "react-youtube-embed";
 
-function Learn(){
-    const [report, setReport] = useState([]);
-    const [vidIds, setVidIds] = useState([]);
-    const options = {
-        height: '390',
-        width: '640',
-        playerVars: {
-          autoplay: 1,
-          controls: 1,
-        },
-      };
-    useEffect(() => {
+function Learn() {
+  const [report, setReport] = useState([]);
+  const [vidIds, setVidIds] = useState([]);
+  const options = {
+    height: "390",
+    width: "640",
+    playerVars: {
+      autoplay: 1,
+      controls: 1,
+    },
+  };
+  useEffect(() => {
     async function getReport() {
       const response = await axios.get(`${path}/report`, {}, {});
       console.log(response.data.topics[0][0]);
       setReport(response.data.topics[0][0]);
     }
 
-    
     async function getVideos() {
+<<<<<<< HEAD
         const response = await axios.get(`${path}/videos`, {}, {});
         console.log(response.data);
         console.log(response.data.ids);
@@ -44,5 +44,22 @@ function Learn(){
       ))} 
     </div>);
 };
+=======
+      const response = await axios.get(`${path}/videos`, {}, {});
+      console.log(response.data);
+      setVidIds(response.data);
+    }
+    getReport();
+    getVideos();
+  }, []);
+  return (
+    <div>
+      {vidIds.map((videoId) => (
+        <iframe src={`https://www.youtube.com/embed/${videoId}`}></iframe>
+      ))}
+    </div>
+  );
+}
+>>>>>>> 2ccad25 (sending answers to server)
 
 export default Learn;

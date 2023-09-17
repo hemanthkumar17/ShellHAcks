@@ -55,11 +55,11 @@ def send_questions():
 @app.route('/answers', methods=["GET","POST"])
 def get_answers():
     # get the answers and do the evals
-    try:
+    # try:
         data =  request.get_json()
         print("data recieved from client",data)
-        qa_pairs = data.qa_pairs
-        answers = data.answers
+        qa_pairs = data['qa_pairs']
+        answers = data['answers']
         ans = evaluate_test(qa_pairs=qa_pairs, answer_truth=answers)
         print(ans)
 
@@ -81,8 +81,8 @@ def get_answers():
         # Return ans
         return jsonify({"message":"topic recieved"})
 
-    except Exception as e:
-        return jsonify({'error':str(e)}), 400
+    # except Exception as e:
+    #     return jsonify({'error':str(e)}), 400
     
 
 # eval report

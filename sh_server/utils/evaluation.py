@@ -66,8 +66,8 @@ def evaluate_test(qa_pairs, answer_truth):
     Returns:
         _type_: _description_
     """
-    questions = [x["question"] for x in qa_pairs["questions"]]
-    answers = [x["answer"] for x in qa_pairs["questions"]]
+    questions = [x["question"] for x in qa_pairs]
+    answers = [x["answer"] for x in qa_pairs]
     res = []
     # print(questions)
     # print(answers)

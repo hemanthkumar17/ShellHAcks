@@ -86,8 +86,8 @@ function QuestionItem(props) {
     // setCurrentCardIndex((prevIndex) => (prevIndex + 1) % cardsData.length);
     if (answer.length > 0) {
       setAnswers([...answers, answer]);
-      props.changeIndex(props.index + 1);
       setAnswer("");
+      props.changeIndex(props.index + 1);
     }
   };
 
@@ -111,22 +111,20 @@ function QuestionItem(props) {
           </button>
         )}
         <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {props.question[props.index].question}
-              </Typography>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {props.question[props.index].question}
+            </Typography>
 
-              <TextField
-                id="outlined-basic"
-                label="Type your answer here"
-                variant="outlined"
-                onChange={(e) => {
-                  setAnswer(e.target.value);
-                }}
-              />
-            </CardContent>
-          </CardActionArea>
+            <TextField
+              id="outlined-basic"
+              label="Type your answer here"
+              variant="outlined"
+              onChange={(e) => {
+                setAnswer(e.target.value);
+              }}
+            />
+          </CardContent>
         </Card>
         {props.index === props.question.length - 1 ? (
           <></>
@@ -138,7 +136,7 @@ function QuestionItem(props) {
       </div>
 
       {props.index === props.question.length - 1 ? (
-        <SubmitQuiz index={props.index} />
+        <SubmitQuiz answers={answers} questions={props.question} />
       ) : (
         <></>
       )}
@@ -146,9 +144,10 @@ function QuestionItem(props) {
   );
 }
 
-function SubmitQuiz() {
+function SubmitQuiz({ answers, questions }) {
   const navigate = useNavigate("");
 
+  console.log(answers);
   return (
     <div className="submit-btn">
       <Button
@@ -158,6 +157,7 @@ function SubmitQuiz() {
             `${BASE_URL}/answers`,
             {
               answers: answers,
+              qa_pairs: questions,
             },
             {
               headers: {
@@ -178,19 +178,5 @@ function SubmitQuiz() {
     </div>
   );
 }
-
-// function BottomNav() {
-//   const [isCompleted, setIsCompleted] = useState(false);
-
-//   if (isCompleted) {
-//     return <Button variant="contained">SUBMIT</Button>;
-//   } else {
-//     return (
-//       <Stack spacing={2}>
-//         <Pagination count={6} size="large" color="primary" />
-//       </Stack>
-//     );
-//   }
-// }
 
 export default Question;
