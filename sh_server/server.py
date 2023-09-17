@@ -25,7 +25,7 @@ def get_topic():
         # print("avi")
         sub = get_groups(data['topic'])
         try:
-            fb.post(username + "/" + data['topic'], {f'week_{x}': {"topics": p , "learnt": "false"} for x, p in enumerate(sub)})
+            fb.post(username + "/" + data['topic'], {f'week_{x}': {"topics": p , "learnt": False} for x, p in enumerate(sub)})
             print("data recieved from client",data)
             return jsonify({"message":"topic recieved"})
         except Exception as e:
@@ -85,7 +85,7 @@ def get_answers():
     return "f"
 
 # eval report
-@app.route("/report")
+@app.route("/report", methods=['GET'])
 def send_report():
     # send the generated report back to client
     
@@ -94,5 +94,7 @@ def send_report():
     hash = list(data[topic].keys())[0]
     weeks = data[topic][hash]
     subtopics = [data[topic][hash][week]['topics'] for week in weeks if not data[topic][hash][week]['learnt']]
-
+    print(subtopics)
+    print(topic)
+    print(weeks)
     return jsonify({'topics':subtopics}), 200
