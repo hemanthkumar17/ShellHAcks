@@ -102,22 +102,20 @@ def send_report():
 
 @app.route("/videos", methods=["GET"])
 def send_videos():
-    try:
-        data = fb.get(username, '')
-        topic = list(data.keys())[0]
-        hash = list(data[topic].keys())[0]
-        weeks = data[topic][hash]
-        subtopics = [data[topic][hash][week]['topics'] for week in weeks if not data[topic][hash][week]['learnt']]
-
-        vids = get_vids(subtopics[0])
-        print(vids)
-        response = jsonify(
-            [{"id": x["id"], "link": x["link"], "title": x["title"]} for x in vids]
-            )
-        return response
-    except Exception as e:
-        print(e)
-        return jsonify({'error':str(e)}), 400
+    data = fb.get(username, '')
+    topic = list(data.keys())[0]
+    hash = list(data[topic].keys())[0]
+    weeks = data[topic][hash]
+    subtopics = [data[topic][hash][week]['topics'] for week in weeks if not data[topic][hash][week]['learnt']]
+    print(subtopics[0])
+    if type(subtopics[0 ]) == dict:
+        subtopics = list(subtopics[0].values())
+    vids = get_vids(subtopics[0])
+    print(vids)
+    response = jsonify(
+        [{"id": x["id"], "link": x["link"], "title": x["title"]} for x in vids]
+        )
+    return response
 
 @app.route("/practiceqa", methods=["GET"])
 def send_qa():
