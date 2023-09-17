@@ -1,13 +1,10 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useState } from "react";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
@@ -17,7 +14,6 @@ import { BASE_URL } from "../config";
 const path = "http://127.0.0.1:5000";
 
 function Question() {
-  const [cardClicked, setCardClicked] = useState(false);
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
@@ -40,21 +36,11 @@ function Question() {
 }
 
 function QuestionCard({ questions }) {
-  // console.log(props.questions);
-
-  // questions.map((item) => {
-  //   console.log(item.question);
-  // });
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
   return (
     <div className="question">
       <div className="card-container">
-        {/* {questions &&
-          questions.map((item) => {
-            return <QuestionItem question={item.question} />;
-          })} */}
-
         {questions.length > 0 ? (
           <QuestionItem
             question={questions}
