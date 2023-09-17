@@ -59,15 +59,27 @@ def get_answers():
         print("data recieved from client",data)
         qa_pairs = data.qa_pairs
         answers = data.answers
-        evals = evaluate_test(qa_pairs=qa_pairs, answer_truth=answers)
-        print(evals)
+        ans = evaluate_test(qa_pairs=qa_pairs, answer_truth=answers)
+        print(ans)
 
+        
         data = fb.get(username, '')
-        for topic in data:
-            subtopics = list(data[topic].values())[0]
-        print(subtopics)
-        # Return evals
+        topic = list(data.keys())[0]
+        hash = list(data[topic].keys())[0]
+        weeks = data[topic][hash]
+        week_data = [data[topic][hash][week] for week in weeks]
+        subtopics = [data[topic][hash][week]['topics'] for week in weeks]
+
+        path ="/" + topic + "/" + hash + "/"
+
+        res = [bool(ans[i] and ans[i + 1] and ans[i + 2]) for i in range(0, len(ans) - 2, 3)]
+
+        for r, week in zip(res, weeks):
+            fb.put(username, path + week + "/learnt", r)
+
+        # Return ans
         return jsonify({"message":"topic recieved"})
+
     except Exception as e:
         return jsonify({'error':str(e)}), 400
     return "f"
@@ -76,4 +88,11 @@ def get_answers():
 @app.route("/report")
 def send_report():
     # send the generated report back to client
-    return "send"
+    
+    data = fb.get(username, '')
+    topic = list(data.keys())[0]
+    hash = list(data[topic].keys())[0]
+    weeks = data[topic][hash]
+    subtopics = [data[topic][hash][week]['topics'] for week in weeks if not data[topic][hash][week]['learnt']]
+
+    return jsonify({'topics':subtopics}), 200

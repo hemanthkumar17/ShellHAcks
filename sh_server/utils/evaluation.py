@@ -92,13 +92,14 @@ def get_course_list_api(topic = "Programming"):
   return response
 
 def get_groups(topic = "Programming"):
+    
   groups=[]
-  
   response=get_course_list_api(topic)
   response=response["choices"][0]["message"]["content"]
   response = response.replace("\\", "").replace("\n", "")
   response=json.loads(response)
 
   for i in response:
-     groups.append(response[i]) 
+     groups.append(response[i])
+
   return groups
