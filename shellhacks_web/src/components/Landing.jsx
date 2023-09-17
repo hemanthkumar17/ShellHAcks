@@ -3,18 +3,18 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import '../landing.css'
+import "../landing.css";
 // import {} from '@material-ui/icons';
-import ModeNightIcon from '@mui/icons-material/ModeNight';
-import LightModeIcon from '@mui/icons-material/LightMode';
+import ModeNightIcon from "@mui/icons-material/ModeNight";
+import LightModeIcon from "@mui/icons-material/LightMode";
 const path = "http://127.0.0.1:5000";
 
 function myFunction() {
   var element = document.body;
-  var element2 = document.getElementsByClassName("topic-button"); 
-  var element3 = document.getElementsByClassName("toggle-button"); 
-  element2=element2[0];
-  element3=element3[0];
+  var element2 = document.getElementsByClassName("topic-button");
+  var element3 = document.getElementsByClassName("toggle-button");
+  element2 = element2[0];
+  element3 = element3[0];
   element.classList.toggle("dark-mode");
   element2.classList.toggle("dark-mode");
   element3.classList.toggle("icon-night-dark");

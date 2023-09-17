@@ -24,24 +24,27 @@ function Learn() {
     }
 
     async function getVideos() {
-        const response = await axios.get(`${path}/videos`, {}, {});
-        console.log(response.data);
-        console.log(response.data.ids);
-        setVidIds(response.data);
-      }
+      const response = await axios.get(`${path}/videos`, {}, {});
+      console.log(response.data);
+      console.log(response.data.ids);
+      setVidIds(response.data);
+    }
     getReport();
     getVideos();
-    }, []);
-    return (<div>
+  }, []);
+  return (
+    <div>
       {vidIds.ids?.map((videoId) => (
-        <iframe 
-        sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
-        frameborder='10 | 10'
-        allow='autoplay; encrypted-media'
-        allowFullScreen
-        src={`https://www.youtube.com/embed/${videoId}`}></iframe>
-      ))} 
-    </div>);
-};
+        <iframe
+          sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation"
+          frameborder="10 | 10"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+          src={`https://www.youtube.com/embed/${videoId}`}
+        ></iframe>
+      ))}
+    </div>
+  );
+}
 
 export default Learn;

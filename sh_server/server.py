@@ -14,7 +14,7 @@ CORS(app)
 def hello_world():
     return 'Hello world!'
 
-username = "Avi"
+username = "Benson"
 
 @app.route('/topic', methods =["GET","POST"])
 def get_topic():

@@ -4,7 +4,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import Pagination from "@mui/material/Pagination";
