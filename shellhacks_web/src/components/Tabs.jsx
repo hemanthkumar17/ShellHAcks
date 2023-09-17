@@ -10,13 +10,12 @@ export default function CenteredTabs() {
 
   const navigate = useNavigate("");
   const handleChange = (event, newValue) => {
-    console.log(newValue);
+    setValue(newValue);
     if (newValue == 0) {
       navigate("/answers");
     } else {
       navigate("/learn");
     }
-    setValue(newValue);
   };
 
   return (

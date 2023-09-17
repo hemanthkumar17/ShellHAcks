@@ -1,1 +1,1 @@
-export const BASE_URL = "https://smart-trail-1148b94fbea9.herokuapp.com";
+export const BASE_URL = "https://smart-edu-1fc3b8d44b79.herokuapp.com";

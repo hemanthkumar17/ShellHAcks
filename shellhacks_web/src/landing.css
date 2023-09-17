@@ -3,11 +3,12 @@ body {
   background-color: black;
   color: white;
   font-size: 25px;
-  border: 2px solid #007bff;
-  height: 100%;
+  /* border: 2px solid #007bff; */
+
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: auto;
 }
 .topic-button {
   margin-left: 8;

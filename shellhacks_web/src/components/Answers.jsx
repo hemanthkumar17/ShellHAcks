@@ -26,7 +26,11 @@ function Answer() {
   }, []);
 
   return (
-    <div>
+    <div
+      style={{
+        height: "100%",
+      }}
+    >
       <CenteredTabs />
       <h2
         style={{

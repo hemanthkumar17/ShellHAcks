@@ -157,7 +157,7 @@ function SubmitQuiz({ answers, questions }) {
       >
         SUBMIT
       </Button>
-      {/* {load === true ? <Loading /> : null} */}
+      {load === true ? <Loading /> : null}
     </div>
   );
 }

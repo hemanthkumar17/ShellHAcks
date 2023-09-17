@@ -18,6 +18,8 @@ body {
 .submit-btn {
   margin-top: 8px;
   width: inherit;
+  display: flex;
+  justify-content: center;
 }
 
 .row_container {

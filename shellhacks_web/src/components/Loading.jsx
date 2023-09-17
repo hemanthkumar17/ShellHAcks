@@ -5,12 +5,9 @@ export const Loading = () => {
     <div
       style={{
         display: "flex",
-        // justifyContent: "center",
         flexDirection: "column",
-        // alignItems: "center",
         width: "100%",
-        // height: "50vh",
-        marginTop:"30px",
+        marginTop: "30px",
       }}
     >
       <div style={{ display: "flex", justifyContent: "center" }}>

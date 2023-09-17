@@ -41,7 +41,11 @@ function Landing() {
   }, []);
 
   return (
-    <div>
+    <div
+      style={{
+        height: "100vh",
+      }}
+    >
       {/* <div style={{ position: "absolute" }}>
         <Particles height="100vh" width="100vw" params={particlesConfig} />
       </div> */}
@@ -52,6 +56,7 @@ function Landing() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          marginTop: 150,
         }}
       >
         <h2>SmartTrail: Personalized Learning Journeys for All</h2>
@@ -89,7 +94,7 @@ function Landing() {
                 {
                   headers: {
                     "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "http://localhost:5173",
+                    "Access-Control-Allow-Origin": "*",
                   },
                 }
               );
@@ -105,7 +110,6 @@ function Landing() {
             LET'S GO
           </Button>
           {load === true ? <Loading /> : null}
-          {/* </div> */}
         </div>
       </div>
     </div>
