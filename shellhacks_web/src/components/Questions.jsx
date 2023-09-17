@@ -22,7 +22,7 @@ function Question() {
   useEffect(() => {
     async function getQuestions() {
       const response = await axios.get(`${path}/questions`, {}, {});
-
+      // console.log(response.data);
       setQuestions(response.data);
     }
 
@@ -39,7 +39,11 @@ function Question() {
 }
 
 function QuestionCard({ questions }) {
-  console.log("Questions length: " + questions);
+  // console.log(props.questions);
+
+  questions.map((item) => {
+    console.log(item.question);
+  });
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
   const handleNextCard = () => {
@@ -61,9 +65,10 @@ function QuestionCard({ questions }) {
         <button className="nav-button prev" onClick={handlePrevCard}>
           &lt;
         </button>
-        {questions.map((question) => {
-          <QuestionItem question={question} />;
-        })}
+        {/* {props &&
+          props.map((question) => {
+            <QuestionItem question={question} />;
+          })} */}
         <button className="nav-button next" onClick={handleNextCard}>
           &gt;
         </button>
@@ -74,26 +79,28 @@ function QuestionCard({ questions }) {
 }
 
 function QuestionItem({ question }) {
-  <Card sx={{ maxWidth: 345 }}>
-    <CardActionArea>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit totam,
-          molestias neque voluptatum laborum alias impedit iste voluptas eum
-          consequuntur?
-        </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
+  return (
+    <Card sx={{ maxWidth: 345 }}>
+      <CardActionArea>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
+            totam, molestias neque voluptatum laborum alias impedit iste
+            voluptas eum consequuntur?
+          </Typography>
+          {/* <Typography variant="body2" color="text.secondary">
               Lizards are a widespread group of squamate reptiles, with over 6,000
               species, ranging across all continents except Antarctica
           </Typography> */}
-        <TextField
-          id="outlined-basic"
-          label="Type your answer here"
-          variant="outlined"
-        />
-      </CardContent>
-    </CardActionArea>
-  </Card>;
+          <TextField
+            id="outlined-basic"
+            label="Type your answer here"
+            variant="outlined"
+          />
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
 }
 
 function SubmitQuiz({ index }) {
