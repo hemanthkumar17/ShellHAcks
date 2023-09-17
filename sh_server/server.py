@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
@@ -83,7 +83,7 @@ def get_answers():
 
     except Exception as e:
         return jsonify({'error':str(e)}), 400
-    return "f"
+    
 
 # eval report
 @app.route("/report", methods=['GET'])
@@ -102,5 +102,19 @@ def send_report():
 
 @app.route("/videos", methods=["GET"])
 def send_videos():
-    data =  request.get_json()
-    return jsonify(get_vids(data["subtopic"]))
+    try:
+        data = fb.get(username, '')
+        topic = list(data.keys())[0]
+        hash = list(data[topic].keys())[0]
+        weeks = data[topic][hash]
+        subtopics = [data[topic][hash][week]['topics'] for week in weeks if not data[topic][hash][week]['learnt']]
+
+        response = jsonify({"message": get_vids(subtopics[0])})
+        return response
+    except Exception as e:
+        print(e)
+        return jsonify({'error':str(e)}), 400
+
+# @app.route("/practiceqa", methods=["GET"])
+# def send_qa():
+#     return 'a'
