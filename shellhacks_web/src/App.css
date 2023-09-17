@@ -53,3 +53,7 @@
 .row_container {
   display: flex;
 }
+
+.topic_placeholder {
+  font-size: large;
+}

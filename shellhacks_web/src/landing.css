@@ -1,76 +1,61 @@
 body {
-    padding: 25px;
-    background-color: black;
-    color: white;
-    font-size: 25px;
-    border: 2px solid #007bff; 
-  }
-  .topic-button {
-    margin-left: 8;
-    height:32;  
-    background-color: black;
-    color: white;
-    border: 2px solid #007bff; 
-  }
-  .text-field{
-    background-color: white;
-    height: 57px;
-    padding-top: 10px;
-    color:black;
-    border-radius: 8px;
-    width: 300px;
-    font-size:35px;
-  }
-  .dark-mode {
-    background-color: white;
-    color: black;
-    border: 2px solid #DFC5FE; 
-  }
+  padding: 25px;
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  border: 2px solid #007bff;
+}
+.topic-button {
+  margin-left: 8;
+  height: 32;
+  background-color: black;
+  color: white;
+  border: 2px solid #007bff;
+}
+.text-field {
+  background-color: white;
+  height: 57px;
+  padding-top: 10px;
+  color: black;
+  border-radius: 8px;
+  width: 300px;
+  font-size: 35px;
+}
+.dark-mode {
+  background-color: white;
+  color: black;
+  border: 2px solid #dfc5fe;
+}
 
-  .toggle-button{
-    position: fixed;
-    top: 2px;
-    right: 2px;
-    width:10%;
-    height:10%;
-    background-color: black;
-  }
-  /* .toggle-button:hover{
+.toggle-button {
+  position: fixed;
+  top: 2px;
+  right: 2px;
+  width: 10%;
+  height: 10%;
+  background-color: black;
+}
+/* .toggle-button:hover{
     pointer-events: none;
 
   } */
 
-  .icon-night{
-    height:100%;
-    width:100%;
-    
-    /* color:white; */
-  }
-  .icon-night-dark{
-    /* height:100%;
+.icon-night {
+  height: 100%;
+  width: 100%;
+
+  /* color:white; */
+}
+.icon-night-dark {
+  /* height:100%;
     width:100%; */
-    background-color: white;
-    color:black;
-    /* color:white; */
-  }
+  background-color: white;
+  color: black;
+  /* color:white; */
+}
 
-
-  .dark-mode {
-    background-color: white;
-    color: black;
-    border: 2px solid #DFC5FE; 
-  }
-
-  .button-div{
-    margin-top:10px;
-  }
-
-  ::placeholder {
-    text-align: center; 
- }
-  
-  
-
-    
-  
-  
+.dark-mode {
+  background-color: white;
+  color: black;
+  border: 2px solid #dfc5fe;
+}

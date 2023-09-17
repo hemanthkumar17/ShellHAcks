@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Question from "./components/Questions";
 import Landing from "./components/Landing";
 import Learn from "./components/Learn";
+import Particles from "react-tsparticles";
+import particlesConfig from "./config/particlesConfig";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <Router>
       <Routes>
