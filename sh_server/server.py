@@ -46,7 +46,7 @@ def send_questions():
     subtopics = [data[topic][hash][week]['topics'] for week in weeks]
     
     print(subtopics)
-    questions = get_questions(subtopics)
+    questions = get_questions(subtopics, x=1)
     flatten = lambda x: [item for sublist in x for item in sublist]
 
     return flatten(questions["questions"])
@@ -108,7 +108,7 @@ def send_videos():
     weeks = data[topic][hash]
     subtopics = [data[topic][hash][week]['topics'] for week in weeks if not data[topic][hash][week]['learnt']]
     print(subtopics[0])
-    if type(subtopics[0 ]) == dict:
+    if type(subtopics[0]) == dict:
         subtopics = list(subtopics[0].values())
     vids = get_vids(subtopics[0])
     print(vids)
