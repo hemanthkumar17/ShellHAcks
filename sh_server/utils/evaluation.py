@@ -43,14 +43,18 @@ def get_questions(subtopics: List[List]):
     return questions
 
 def compare(question, answer, answer_truth):
-    res = 0
-    for i, j, k in zip(question, answer, answer_truth):
-        qe = openai.Embedding.create(input = [i], model="text-embedding-ada-002")['data'][0]['embedding']
-        ae = openai.Embedding.create(input = [j], model="text-embedding-ada-002")['data'][0]['embedding']
-        ate = openai.Embedding.create(input = [k], model="text-embedding-ada-002")['data'][0]['embedding']
-        res += (util.pytorch_cos_sim(ae, qe) + util.pytorch_cos_sim(ae, ate)) / 2
-    res = res.flatten()[0]
-    return res >= 0.8 * len(question), res
+    res = []
+    for q, a, at in zip(question, answer, answer_truth):
+        print(q)
+        print(a)
+        print(at)
+        qe = openai.Embedding.create(input = [q], model="text-embedding-ada-002")['data'][0]['embedding']
+        ae = openai.Embedding.create(input = [a], model="text-embedding-ada-002")['data'][0]['embedding']
+        ate = openai.Embedding.create(input = [at], model="text-embedding-ada-002")['data'][0]['embedding']
+        res.append((util.pytorch_cos_sim(ae, qe) + util.pytorch_cos_sim(ae, ate)).flatten() / 2)
+        print(res)
+    print(res)
+    return [r >= 0.9 for r in res]
 
 def evaluate_test(qa_pairs, answer_truth):
     """Evaluates a list(list(questions)) to give a list(list(answers)) and list(list(answer_truth))
@@ -65,8 +69,13 @@ def evaluate_test(qa_pairs, answer_truth):
     questions = [x["question"] for x in qa_pairs["questions"]]
     answers = [x["answer"] for x in qa_pairs["questions"]]
     res = []
-    for i, j, k in zip(questions, answers, answer_truth):
-        res.append([compare(i, j, k)])
+    # print(questions)
+    # print(answers)
+
+    # for i, j, k in zip(questions, answers, answer_truth):
+    #     res.append([compare(i, j, k)])
+    res = compare(questions, answers, answer_truth)
+    print(res)
     return res
 
 

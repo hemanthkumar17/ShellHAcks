@@ -45,22 +45,23 @@ def send_questions():
 # sending the answer back
 @app.route('/answers')
 def get_answers():
+    # get the answers and do the evals
     try:
         data =  request.get_json()
         print("data recieved from client"+data)
         qa_pairs = data.qa_pairs
         answers = data.answers
         evals = evaluate_test(qa_pairs=qa_pairs, answer_truth=answers)
+        print(evals)
 
-        
-        # data = fb.get(username, '')
-        # for topic in data:
-        #     subtopics = list(data[topic].values())[0]
+        data = fb.get(username, '')
+        for topic in data:
+            subtopics = list(data[topic].values())[0]
+        print(subtopics)
         # Return evals
         return jsonify({"message":"topic recieved"})
     except Exception as e:
         return jsonify({'error':str(e)}), 400
-    # get the answers and do the evals
     return "f"
 
 # eval report
