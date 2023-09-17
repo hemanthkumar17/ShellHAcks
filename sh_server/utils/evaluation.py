@@ -5,8 +5,8 @@ from .api_keys import OPENAPI_KEY
 
 # import torch
 import json
-from sentence_transformers import util
-
+# from sentence_transformers import util
+import numpy as np
 
 openai.api_key = OPENAPI_KEY
 def get_questions(subtopics: List[List], x=3):
@@ -51,7 +51,8 @@ def compare(question, answer, answer_truth):
         qe = openai.Embedding.create(input = [q], model="text-embedding-ada-002")['data'][0]['embedding']
         ae = openai.Embedding.create(input = [a], model="text-embedding-ada-002")['data'][0]['embedding']
         ate = openai.Embedding.create(input = [at], model="text-embedding-ada-002")['data'][0]['embedding']
-        res.append((util.pytorch_cos_sim(ae, qe) + util.pytorch_cos_sim(ae, ate)).flatten() / 2)
+        cos_sim = lambda a, b: np.dot(a, b) / np.linalg.norm(a) / np.linalg.norm(b) 
+        res.append((cos_sim(ae, qe) + cos_sim(ae, ate)).flatten() / 2)
         print(res)
     print(res)
     return [r >= 0.9 for r in res]

@@ -102,10 +102,7 @@ function Landing() {
             LET'S GO
           </Button>
           {load === true ? <Loading /> : null}
-<<<<<<< HEAD
           {/* </div> */}
-=======
->>>>>>> 56490ae (pre-deployment code)
         </div>
       </div>
     </div>

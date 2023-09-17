@@ -128,11 +128,7 @@ function QuestionItem(props) {
 
 function SubmitQuiz({ answers, questions }) {
   const navigate = useNavigate("");
-<<<<<<< HEAD
-  const [load, setLoad] = useState(false);
-=======
-
->>>>>>> 29c88e4 (pre-deployment code)
+  const [load, setLoad] = useState()
   return (
     <div className="submit-btn">
       <Button
@@ -161,7 +157,7 @@ function SubmitQuiz({ answers, questions }) {
       >
         SUBMIT
       </Button>
-      {load === true ? <Loading /> : null}
+      {/* {load === true ? <Loading /> : null} */}
     </div>
   );
 }
