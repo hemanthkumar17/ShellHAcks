@@ -2,13 +2,12 @@ from youtubesearchpython import *
 import json
 from openai import ChatCompletion
 import openai
-from api_keys import OPENAPI_KEY
+from .api_keys import OPENAPI_KEY
 
 openai.api_key = OPENAPI_KEY
 
-def get_vids(subtopics):
-    for topic in subtopics:
-        return CustomSearch("What is" + topic, searchPreferences=VideoSortOrder.viewCount,  limit=10, ).result()
+def get_vids(topic):
+    return {x["id"]: x["link"] for x in CustomSearch("What is" + topic, searchPreferences=VideoSortOrder.viewCount,  limit=10, ).result()['result']}
 
 
 def get_qna(questions):

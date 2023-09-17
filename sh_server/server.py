@@ -7,6 +7,7 @@ from firebase import firebase
 fb = firebase.FirebaseApplication('https://dynamo-1697a-default-rtdb.firebaseio.com/', None)
 
 from utils.evaluation import get_groups, get_questions, evaluate_test
+from utils.teach import get_vids
 CORS(app)
 
 @app.route('/')
@@ -98,3 +99,8 @@ def send_report():
     print(topic)
     print(weeks)
     return jsonify({'topics':subtopics}), 200
+
+@app.route("/videos", methods=["GET"])
+def send_videos():
+    data =  request.get_json()
+    return jsonify(get_vids(data["subtopic"]))
