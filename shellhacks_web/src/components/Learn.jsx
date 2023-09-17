@@ -24,7 +24,6 @@ function Learn() {
     }
 
     async function getVideos() {
-<<<<<<< HEAD
         const response = await axios.get(`${path}/videos`, {}, {});
         console.log(response.data);
         console.log(response.data.ids);
@@ -44,22 +43,5 @@ function Learn() {
       ))} 
     </div>);
 };
-=======
-      const response = await axios.get(`${path}/videos`, {}, {});
-      console.log(response.data);
-      setVidIds(response.data);
-    }
-    getReport();
-    getVideos();
-  }, []);
-  return (
-    <div>
-      {vidIds.map((videoId) => (
-        <iframe src={`https://www.youtube.com/embed/${videoId}`}></iframe>
-      ))}
-    </div>
-  );
-}
->>>>>>> 2ccad25 (sending answers to server)
 
 export default Learn;
