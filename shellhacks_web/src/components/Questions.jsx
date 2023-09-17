@@ -34,7 +34,7 @@ function Question() {
 
 function QuestionCard({ questions }) {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  
+
   return (
     <div className="question">
       <div className="card-container">
@@ -128,7 +128,7 @@ function QuestionItem(props) {
 
 function SubmitQuiz({ answers, questions }) {
   const navigate = useNavigate("");
-  const [load, setLoad] = useState()
+  const [load, setLoad] = useState();
   return (
     <div className="submit-btn">
       <Button

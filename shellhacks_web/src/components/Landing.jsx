@@ -8,6 +8,7 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import particlesConfig from "../config/particlesConfig";
 import { Loading } from "./Loading";
+import { BASE_URL } from "../config";
 
 const path = "http://127.0.0.1:5000";
 
@@ -27,6 +28,7 @@ function Landing() {
   const [topic, setTopic] = useState("");
   const [load, setLoad] = useState(false);
   const particlesInit = useCallback(async (engine) => {
+    console.log(engine);
     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
@@ -35,7 +37,7 @@ function Landing() {
   }, []);
 
   const particlesLoaded = useCallback(async (container) => {
-    // await console.log(container);
+    await console.log(container);
   }, []);
 
   return (
@@ -80,13 +82,14 @@ function Landing() {
 
               setLoad(true);
               const response = await axios.post(
-                `${path}/topic`,
+                `${BASE_URL}/topic`,
                 {
                   topic: topic,
                 },
                 {
                   headers: {
                     "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "http://localhost:5173",
                   },
                 }
               );

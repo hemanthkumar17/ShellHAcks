@@ -5,6 +5,7 @@ import { Card } from "react-bootstrap";
 const path = "http://127.0.0.1:5000";
 import React from "react";
 import CenteredTabs from "./Tabs";
+import { BASE_URL } from "../config";
 // import YoutubeEmbed from "react-youtube-embed";
 
 function Learn() {
@@ -20,12 +21,12 @@ function Learn() {
   };
   useEffect(() => {
     async function getReport() {
-      const response = await axios.get(`${path}/report`, {}, {});
+      const response = await axios.get(`${BASE_URL}/report`, {}, {});
       setReport(response.data.topics[0][0]);
     }
 
     async function getVideos() {
-      const response = await axios.get(`${path}/videos`, {}, {});
+      const response = await axios.get(`${BASE_URL}/videos`, {}, {});
 
       setVidIds(response.data);
     }

@@ -8,7 +8,7 @@ fb = firebase.FirebaseApplication('https://dynamo-1697a-default-rtdb.firebaseio.
 
 from utils.evaluation import get_groups, get_questions, evaluate_test
 from utils.teach import get_vids, get_qna
-CORS(app)
+CORS(app,resources={r"/api/*": {"origins": "*"}})
 
 @app.route('/')
 def hello_world():
