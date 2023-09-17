@@ -19,7 +19,7 @@ body {
     color:black;
     border-radius: 8px;
     width: 300px;
-    size:80px;
+    font-size:35px;
   }
   .dark-mode {
     background-color: white;
