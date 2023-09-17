@@ -9,7 +9,7 @@ from sentence_transformers import util
 
 
 openai.api_key = OPENAPI_KEY
-def get_questions(subtopics: List[List]):
+def get_questions(subtopics: List[List], x=3):
     questions = {"questions": []}
     for topic in subtopics:
         prompt = """
@@ -19,7 +19,7 @@ def get_questions(subtopics: List[List]):
         "Programming languages and paradigms",
         "Setting up the development environment",
         ]
-        Write 3 questions to test the understanding of a student who has learned these. Give the output in the format:
+        Write """ + str(x) + """ questions to test the understanding of a student who has learned these. Give the output in the format:
         {"questions":
         [
             {"question": "What is programming?", "answer": "Programming is the process of writing instructions for a computer to execute."},

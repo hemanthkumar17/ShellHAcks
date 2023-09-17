@@ -7,7 +7,7 @@ from firebase import firebase
 fb = firebase.FirebaseApplication('https://dynamo-1697a-default-rtdb.firebaseio.com/', None)
 
 from utils.evaluation import get_groups, get_questions, evaluate_test
-from utils.teach import get_vids
+from utils.teach import get_vids, get_qna
 CORS(app)
 
 @app.route('/')
@@ -119,6 +119,19 @@ def send_videos():
         print(e)
         return jsonify({'error':str(e)}), 400
 
-# @app.route("/practiceqa", methods=["GET"])
-# def send_qa():
-#     return 'a'
+@app.route("/practiceqa", methods=["GET"])
+def send_qa():
+    data = fb.get(username, '')
+    
+    topic = list(data.keys())[0]
+    hash = list(data[topic].keys())[0]
+    weeks = data[topic][hash]
+    print(weeks)
+    print(data[topic][hash])
+    subtopics = [data[topic][hash][week]['topics'] for week in weeks if not data[topic][hash][week]['learnt']]
+    
+    print(subtopics)
+    questions = get_questions([subtopics[0]], x=10)
+    return jsonify({
+        'questions': questions
+    })

@@ -61,5 +61,5 @@ def get_qna(questions):
     
     questions = [x["question"] for x in new_questions["questions"]]
     answers = [x["answer"] for x in new_questions["questions"]]
-    return list(zip(questions, answers))
+    return [{"question": q, "answer": a} for q,a in zip(questions, answers)]
     
