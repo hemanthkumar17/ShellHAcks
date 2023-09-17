@@ -21,11 +21,16 @@ def get_topic():
     # use this topic to generate the set of questions  
     try:
         data =  request.get_json()
-        sub = get_groups(data.topic)
-        fb.post(username + "/" + data.topic, {x: p for x, p in enumerate(sub)}, merge=True)
 
-        print("data recieved from client"+data)
-        return jsonify({"message":"topic recieved"})
+        
+        sub = get_groups(data['topic'])
+        print(sub)
+        try:
+            fb.post(username + "/" + data['topic'], {x: p for x, p in enumerate(sub)})
+            print("data recieved from client",data)
+            return jsonify({"message":"topic recieved"})
+        except Exception as e:
+            return jsonify({'error':str(e)}),400
     except Exception as e:
         return jsonify({'error':str(e)}), 400
 
@@ -43,12 +48,12 @@ def send_questions():
     return flatten(questions["questions"])
 
 # sending the answer back
-@app.route('/answers')
+@app.route('/answers', methods=["GET","POST"])
 def get_answers():
     # get the answers and do the evals
     try:
         data =  request.get_json()
-        print("data recieved from client"+data)
+        print("data recieved from client",data)
         qa_pairs = data.qa_pairs
         answers = data.answers
         evals = evaluate_test(qa_pairs=qa_pairs, answer_truth=answers)

@@ -10,10 +10,19 @@ import { useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const path = "";
 
 function Question() {
   const [cardClicked, setCardClicked] = useState(false);
+  const [questions, setQuestions] = useState([]);
 
+  useEffect(async () => {
+    const response = await axios.get(`{path}/questions`, {}, {});
+
+    console.log(response);
+  }, []);
   const handleCardClicked = () => {
     setCardClicked(!cardClicked);
   };
@@ -21,7 +30,7 @@ function Question() {
   return (
     <div>
       <h1>Take the QUIZ!</h1>
-      <QuestionCard />
+      <QuestionCard questions={questions} />
       {/* <BottomNav/> */}
     </div>
   );
