@@ -25,11 +25,11 @@ function Learn() {
     }
 
     async function getVideos() {
-        const response = await axios.get(`${path}/videos`, {}, {});
-        console.log(response.data);
-        console.log(response.data.ids);
-        setVidIds(response.data);
-      }
+      const response = await axios.get(`${path}/videos`, {}, {});
+      console.log(response.data);
+      console.log(response.data.ids);
+      setVidIds(response.data);
+    }
     getReport();
     getVideos();
     }, []);
