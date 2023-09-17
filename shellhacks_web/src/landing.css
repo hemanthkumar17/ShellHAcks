@@ -12,9 +12,9 @@ body {
     color: white;
     border: 2px solid #007bff; 
   }
-  .topic-button:hover {
+  /* .topic-button:hover {
     pointer-events: none;
-  }
+  } */
   .dark-mode {
     background-color: white;
     color: black;
@@ -29,10 +29,10 @@ body {
     height:10%;
     background-color: black;
   }
-  .toggle-button:hover{
+  /* .toggle-button:hover{
     pointer-events: none;
 
-  }
+  } */
 
   .icon-night{
     height:100%;

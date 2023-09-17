@@ -67,7 +67,7 @@ function Landing() {
           LET'S GO
         </Button>
         <Button class="toggle-button" onClick={myFunction}>
-        <ModeNightIcon >Tog</ModeNightIcon>
+            <ModeNightIcon >Tog</ModeNightIcon>
         </Button>
       </div>
     </div>
