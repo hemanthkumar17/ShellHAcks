@@ -12,9 +12,15 @@ body {
     color: white;
     border: 2px solid #007bff; 
   }
-  /* .topic-button:hover {
-    pointer-events: none;
-  } */
+  .text-field{
+    background-color: white;
+    height: 57px;
+    padding-top: 10px;
+    color:black;
+    border-radius: 8px;
+    width: 300px;
+    size:80px;
+  }
   .dark-mode {
     background-color: white;
     color: black;

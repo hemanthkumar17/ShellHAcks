@@ -29,14 +29,11 @@ function Landing() {
       <h2>SmartTrail: Personalized Learning Journeys for All</h2>
 
       <div>
-        <TextField
-          id="outlined-basic"
-          label="Enter the topic of your choice"
-          variant="outlined"
+        <input
+          type="text"
+          placeholder="Topic to Learn"
+          class="text-field"
           onChange={(e) => setTopic(e.target.value)}
-          style={{
-            height: 32,
-          }}
         />
         <Button
           variant="contained"
@@ -65,9 +62,6 @@ function Landing() {
           }}
         >
           LET'S GO
-        </Button>
-        <Button class="toggle-button" onClick={myFunction}>
-            <ModeNightIcon >Tog</ModeNightIcon>
         </Button>
       </div>
     </div>
