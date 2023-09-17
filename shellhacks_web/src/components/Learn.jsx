@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Card } from 'react-bootstrap';
 
 const path = "http://127.0.0.1:5000";
 import React from "react";
@@ -32,16 +33,21 @@ function Learn() {
     getReport();
     getVideos();
     }, []);
-    return (<div>
-      {vidIds.ids?.map((videoId) => (
+    return (<Card style={{width:"60%"}}>
+      {vidIds.map((videoId, index) => (
+        <Card.Body key={index}>
+        <Card.Text>
+            {videoId.title}
+        </Card.Text>
         <iframe 
         sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
         frameborder='10 | 10'
         allow='autoplay; encrypted-media'
         allowFullScreen
-        src={`https://www.youtube.com/embed/${videoId}`}></iframe>
-      ))} 
-    </div>);
+        src={`https://www.youtube.com/embed/${videoId.id}`}></iframe>
+        </Card.Body>
+      ))} </Card>
+    );
 };
 
 export default Learn;

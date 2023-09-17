@@ -5,8 +5,6 @@ import axios from "axios";
 import { useState } from "react";
 import '../landing.css'
 // import {} from '@material-ui/icons';
-import ModeNightIcon from '@mui/icons-material/ModeNight';
-import LightModeIcon from '@mui/icons-material/LightMode';
 const path = "http://127.0.0.1:5000";
 
 function myFunction() {

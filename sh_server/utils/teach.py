@@ -8,7 +8,7 @@ openai.api_key = OPENAPI_KEY
 
 def get_vids(topic):
     # print(topic)
-    return CustomSearch("What is" + topic[0], searchPreferences=VideoSortOrder.viewCount,  limit=10, ).result()['result']
+    return CustomSearch("What is" + topic[0], searchPreferences=VideoSortOrder.viewCount,  limit=9, ).result()['result']
 
 
 def get_qna(questions):
