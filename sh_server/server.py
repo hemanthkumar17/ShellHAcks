@@ -38,12 +38,16 @@ def get_topic():
 def send_questions():
     # send the questions to client
     data = fb.get(username, '')
-    for topic in data:
-        subtopics = list(data[topic].values())[0]
-        # print(topic)
+    
+    topic = list(data.keys())[0]
+    hash = list(data[topic].keys())[0]
+    weeks = data[topic][hash]
+    subtopics = [data[topic][hash][week]['topics'] for week in weeks]
+    
     print(subtopics)
     questions = get_questions(subtopics)
     flatten = lambda x: [item for sublist in x for item in sublist]
+
     return flatten(questions["questions"])
 
 # sending the answer back
