@@ -7,6 +7,7 @@ import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import particlesConfig from "../config/particlesConfig";
+import { Loading } from "./Loading";
 
 const path = "http://127.0.0.1:5000";
 
@@ -24,7 +25,7 @@ function myFunction() {
 function Landing() {
   const navigate = useNavigate();
   const [topic, setTopic] = useState("");
-
+  const [load, setLoad] = useState(false);
   const particlesInit = useCallback(async (engine) => {
     console.log(engine);
     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
@@ -61,7 +62,8 @@ function Landing() {
               if (topic.trim === "") {
                 return;
               }
-
+              
+              setLoad(true)
               const response = await axios.post(
                 `${path}/topic`,
                 {
@@ -73,7 +75,7 @@ function Landing() {
                   },
                 }
               );
-
+              setLoad(false)
               if (response.status != 200) {
                 throw new Error("Request failed");
               } else {
@@ -84,6 +86,7 @@ function Landing() {
           >
             LET'S GO
           </Button>
+          {load === true ? <Loading /> : null}
         </div>
       </div>
     </div>
