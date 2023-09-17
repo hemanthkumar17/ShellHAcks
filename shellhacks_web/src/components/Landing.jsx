@@ -3,8 +3,22 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-
+import '../landing.css'
+// import {} from '@material-ui/icons';
+import ModeNightIcon from '@mui/icons-material/ModeNight';
+import LightModeIcon from '@mui/icons-material/LightMode';
 const path = "http://127.0.0.1:5000";
+
+function myFunction() {
+  var element = document.body;
+  var element2 = document.getElementsByClassName("topic-button"); 
+  var element3 = document.getElementsByClassName("toggle-button"); 
+  element2=element2[0];
+  element3=element3[0];
+  element.classList.toggle("dark-mode");
+  element2.classList.toggle("dark-mode");
+  element3.classList.toggle("icon-night-dark");
+}
 
 function Landing() {
   const navigate = useNavigate();
@@ -12,7 +26,7 @@ function Landing() {
 
   return (
     <div>
-      <h2>Landing Page</h2>
+      <h2>SmartTrail: Personalized Learning Journeys for All</h2>
 
       <div>
         <TextField
@@ -26,10 +40,7 @@ function Landing() {
         />
         <Button
           variant="contained"
-          style={{
-            marginLeft: 8,
-            height: 32,
-          }}
+          class="topic-button"
           onClick={async () => {
             const response = await axios.post(
               // navigate("/quiz");
@@ -54,6 +65,9 @@ function Landing() {
           }}
         >
           LET'S GO
+        </Button>
+        <Button class="toggle-button" onClick={myFunction}>
+        <ModeNightIcon >Tog</ModeNightIcon>
         </Button>
       </div>
     </div>
